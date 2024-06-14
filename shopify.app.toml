@@ -3,7 +3,7 @@
 client_id = "68778a21adf35f3a33e0a91f070394d4"
 name = "dot-export-dev"
 handle = "dot-export-dev-1"
-application_url = "https://novelty-ripe-walter-adaptor.trycloudflare.com"
+application_url = "https://secrets-giant-lithuania-au.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_product_listings,write_products"
 
 [auth]
 redirect_urls = [
-  "https://novelty-ripe-walter-adaptor.trycloudflare.com/auth/callback",
-  "https://novelty-ripe-walter-adaptor.trycloudflare.com/auth/shopify/callback",
-  "https://novelty-ripe-walter-adaptor.trycloudflare.com/api/auth/callback"
+  "https://secrets-giant-lithuania-au.trycloudflare.com/auth/callback",
+  "https://secrets-giant-lithuania-au.trycloudflare.com/auth/shopify/callback",
+  "https://secrets-giant-lithuania-au.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

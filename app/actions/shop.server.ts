@@ -1,5 +1,6 @@
-import { Session } from "@shopify/shopify-api";
+import prisma from "~/db.server";
 import { TAdminApi } from "~/shopify.server";
+import { Session } from "@shopify/shopify-api";
 
 export async function createShop(admin: TAdminApi, session: Session) {
   const { data: shopData } = await admin.rest.resources.Shop.all({ session });

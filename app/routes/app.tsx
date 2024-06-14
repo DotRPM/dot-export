@@ -1,11 +1,11 @@
-import type { HeadersFunction, LoaderFunctionArgs } from "@remix-run/node";
+import prisma from "~/db.server";
 import { json } from "@remix-run/node";
-import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
+import { NavMenu } from "@shopify/app-bridge-react";
 import { boundary } from "@shopify/shopify-app-remix/server";
 import { AppProvider } from "@shopify/shopify-app-remix/react";
-import { NavMenu } from "@shopify/app-bridge-react";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
-import prisma from "~/db.server";
+import type { HeadersFunction, LoaderFunctionArgs } from "@remix-run/node";
+import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
 
 import { authenticate } from "../shopify.server";
 import { initShop } from "~/actions/shop.server";
