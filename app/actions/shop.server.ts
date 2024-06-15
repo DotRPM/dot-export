@@ -17,6 +17,7 @@ export async function createShop(admin: TAdminApi, session: Session) {
 }
 
 export async function initShop(admin: TAdminApi, session: Session) {
-  const shop = await prisma.shop.findUnique({ where: { shop: session.shop } });
-  if (!shop) await createShop(admin, session);
+  let shop = await prisma.shop.findUnique({ where: { shop: session.shop } });
+  if (!shop) shop = await createShop(admin, session);
+  return shop;
 }

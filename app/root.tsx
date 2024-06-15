@@ -5,6 +5,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { ClientOnly } from "remix-utils/client-only";
 
 export default function App() {
   return (
@@ -24,6 +25,13 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <ClientOnly>
+          {() => (
+            <div>
+              <script src="/scripts/hotjar.js"></script>
+            </div>
+          )}
+        </ClientOnly>
       </body>
     </html>
   );

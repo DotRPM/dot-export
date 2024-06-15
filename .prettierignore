@@ -3,5 +3,4 @@ package.json
 .vscode
 node_modules
 prisma
-public
 .shopify

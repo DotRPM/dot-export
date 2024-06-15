@@ -1,6 +1,9 @@
+import { Crisp } from "crisp-sdk-web";
 import { BlockStack, Button, Card, Layout, List, Text } from "@shopify/polaris";
 
 export default function RequestSection() {
+  const openChatBox = () => Crisp.chat.open();
+
   return (
     <Layout.AnnotatedSection
       title="Request a feature"
@@ -25,7 +28,9 @@ export default function RequestSection() {
             <List.Item>Missing export options</List.Item>
           </List>
           <div>
-            <Button variant="primary">Chat with us</Button>
+            <Button variant="primary" onClick={openChatBox}>
+              Chat with us
+            </Button>
           </div>
         </BlockStack>
       </Card>

@@ -1,4 +1,4 @@
-import prisma from "~/db.server";
+import { Crisp } from "crisp-sdk-web";
 import { json } from "@remix-run/node";
 import { NavMenu } from "@shopify/app-bridge-react";
 import { boundary } from "@shopify/shopify-app-remix/server";
@@ -9,19 +9,30 @@ import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
 
 import { authenticate } from "../shopify.server";
 import { initShop } from "~/actions/shop.server";
+import { useEffect } from "react";
 
 export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin, session } = await authenticate.admin(request);
-  const shop = await prisma.shop.findUnique({ where: { shop: session.shop } });
-  if (!shop) await initShop(admin, session);
+  const shop = await initShop(admin, session);
 
-  return json({ apiKey: process.env.SHOPIFY_API_KEY || "" });
+  return json({ apiKey: process.env.SHOPIFY_API_KEY || "", shop });
 };
 
 export default function App() {
-  const { apiKey } = useLoaderData<typeof loader>();
+  const { apiKey, shop } = useLoaderData<typeof loader>();
+
+  useEffect(() => {
+    Crisp.configure("aba5af21-dda8-446c-aa9b-ca48b58d1207");
+    Crisp.user.setEmail(shop.email);
+    Crisp.session.setData({
+      App: "ExD",
+      Store: shop.shop,
+      Country: shop.country,
+      Owner: shop.owner,
+    });
+  }, []);
 
   return (
     <AppProvider isEmbeddedApp apiKey={apiKey}>
